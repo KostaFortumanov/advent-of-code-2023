@@ -1,0 +1,32 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '1.9.20'
+    id 'application'
+}
+
+group = 'me.kfort'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.jetbrains.kotlin:kotlin-test'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+kotlin {
+    sourceSets.configureEach {
+        languageSettings {
+            languageVersion = "2.0"
+        }
+    }
+    jvmToolchain(17)
+}
+
+application {
+    mainClassName = 'MainKt'
+}
