@@ -28,13 +28,12 @@ private fun part2(schematicNumbers: List<SchematicNumber>, schematicStarPosition
         schematicNumbers.filter { number -> number.digitPositions.any { it.isAdjacentTo(symbolPos) } }
     }.filter { it.size == 2 }.sumOf { (first, second) -> first.number.toLong() * second.number.toLong() }
 
-private fun Pair<Int, Int>.isAdjacentTo(other: Pair<Int, Int>): Boolean {
-    return directions.any { (dx, dy) ->
+private fun Pair<Int, Int>.isAdjacentTo(other: Pair<Int, Int>): Boolean =
+    directions.any { (dx, dy) ->
         val x = first + dx
         val y = second + dy
         (x to y) == other
     }
-}
 
 private fun Pair<Int, Int>.isAdjacentToSymbol(input: List<String>): Boolean {
     val isValid = { x: Int, y: Int ->

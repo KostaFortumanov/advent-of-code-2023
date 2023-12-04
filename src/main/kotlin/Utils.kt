@@ -2,6 +2,8 @@ import java.io.File
 
 fun readFileLines(day: Int): List<String> = File({}.javaClass.getResource("input_$day.txt")!!.path).readLines()
 
+fun String.numbers() = Regex("\\d+").findAll(this).map{ it.value.toInt() }.toList()
+
 fun String?.toIntOrZero() = this?.toIntOrNull() ?: 0
 
 fun <T> List<T>.cartesianProduct(other: List<T> = this) = this.flatMap { s -> List(this.size) { s }.zip(other) }
