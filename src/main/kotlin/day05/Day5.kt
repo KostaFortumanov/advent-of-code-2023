@@ -43,19 +43,11 @@ private data class ElfMap(
     val sourceRanges: List<LongRange> = listOf(),
     val destinationRanges: List<LongRange> = listOf(),
 ) {
-    operator fun get(value: Long): Long = destinationRanges
-        .indexOfFirst { range -> value in range }
+    operator fun get(destinationValue: Long): Long = destinationRanges
+        .indexOfFirst { range -> destinationValue in range }
         .takeIf { it != -1 }
-        ?.let { sourceIndex ->
-            val destinationStart = destinationRanges[sourceIndex].first
-            val destinationEnd = destinationRanges[sourceIndex].last
-            val sourceStart = sourceRanges[sourceIndex].first
-
-            val diff = value - destinationStart
-            if (diff < destinationEnd - destinationStart) {
-                sourceStart + diff
-            } else {
-                null
-            }
-        } ?: value
+        ?.let { index ->
+            val sourceValue = destinationValue + sourceRanges[index].first - destinationRanges[index].first
+            sourceValue.takeIf { it in sourceRanges[index] }
+        } ?: destinationValue
 }
