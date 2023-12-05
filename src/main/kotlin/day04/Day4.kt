@@ -1,6 +1,6 @@
 package day04
 
-import numbers
+import integers
 import println
 import readFileLines
 import kotlin.math.pow
@@ -24,7 +24,7 @@ private fun part2(scratchCards: List<ScratchCard>): Int =
 private fun List<String>.toScratchCards() =
     map { line ->
         val (winning, numbers) = line.split("|")
-        ScratchCard(winning.numbers().drop(1), numbers.numbers())
+        ScratchCard(winning.integers().drop(1), numbers.integers())
     }
 
 private data class ScratchCard(val winningNumbers: List<Int>, val numbers: List<Int>) {
