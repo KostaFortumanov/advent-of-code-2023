@@ -2,10 +2,9 @@ import java.io.File
 
 fun readFileLines(day: Int): List<String> = File({}.javaClass.getResource("input_$day.txt")!!.path).readLines()
 
-fun String.integers() = Regex("\\d+").findAll(this).map { it.value.toInt() }.toList()
+fun String.integers() = Regex("-?\\d+").findAll(this).map { it.value.toInt() }.toList()
 
-fun String.longs() = Regex("\\d+").findAll(this).map { it.value.toLong() }.toList()
-
+fun String.longs() = Regex("-?\\d+").findAll(this).map { it.value.toLong() }.toList()
 
 fun String?.toIntOrZero() = this?.toIntOrNull() ?: 0
 
