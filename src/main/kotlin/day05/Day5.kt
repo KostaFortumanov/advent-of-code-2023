@@ -22,7 +22,7 @@ private fun part2(seedRanges: List<LongRange>, elfMaps: List<ElfMap>) =
     elfMaps.findLocation { seedRanges.any { range -> it in range } }
 
 private fun List<ElfMap>.findLocation(seedPredicate: (Long) -> Boolean): Long =
-    (0..Long.MAX_VALUE).first { location ->
+    generateSequence(0L) { it + 1 }.first { location ->
         val seed = fold(location) { acc, elfMap -> elfMap[acc] }
         seedPredicate(seed)
     }
