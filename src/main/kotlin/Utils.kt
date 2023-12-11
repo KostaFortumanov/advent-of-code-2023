@@ -25,4 +25,6 @@ fun <T> List<T>.split(predicate: (T) -> Boolean): List<List<T>> =
         }
     }
 
+fun <T> List<List<T>>.transpose(): List<List<T>> = List(first().size) { i -> List(size) { j -> this[j][i] } }
+
 fun Any?.println() = println(this)
